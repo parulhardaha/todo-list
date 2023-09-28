@@ -1,10 +1,1 @@
-# todo-list
-
-
-### Git commands
-<li>git checkout master</li>
-<li>git pull origin master</li>
-<li>git checkout -b <b>new-branch</b></li>
-<li>git add .</li>
-<li>git commit -m "some meaningful message"</li>
-<li>git push origin <b>new-branch</b></li>
+![image](https://github.com/parulhardaha/todo-list/assets/114014173/134c0e6b-0c57-4c85-affa-da9dde056edf)
