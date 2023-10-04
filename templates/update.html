@@ -11,19 +11,34 @@
         <div class="container">
             <nav class="navbar navbar-light bg-light">
               <a class="navbar-brand" href="#">
-                <i class="material-icons" style="font-size: 30px">format_list_numbered</i>
-                My TODO List
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                  </svg>
+                <b>My ToDo List</b>
               </a>
             </nav>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                        {{ message }}
+                      </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
             <form action ="/updated/{{todoValue.sno}}" method ="POST">
                 <div class="mb-8">
-                <h5>Update an item</h5>
-                <label for="title" class="form-label">ToDo</label>
+                    &nbsp&nbsp 
+                <h5>Update your ToDo here</h5>
+                <p></p>
+
+                <label for="title" class="form-label"><b>Add your Task</b></label>
                 <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" value={{todoValue.title}}>
-            
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <div class="mb-3">
-                <label for="desc" class="form-label">ToDo Description</label>
-                <input type="text" class="form-control" name="desc" id="desc" value={{todoValue.desc}}>
+                <label for="desc" class="form-label"><b>Task Description</b></label>
+                <input type="text" class="form-control" value="{{todoValue.desc}}" name="desc" id="desc">
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
