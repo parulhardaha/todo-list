@@ -8,6 +8,8 @@ app.config['SQLALCHEMY_DATABASE_URI']= "sqlite:///todo.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 db = SQLAlchemy(app)
 
+first_start = True
+
 class Todo(db.Model):
    sno=db.Column(db.Integer, primary_key=True, autoincrement=True)
    title=db.Column(db.String(200), nullable=False)
@@ -19,6 +21,11 @@ class Todo(db.Model):
 
 @app.route('/')
 def home():
+    global first_start
+    if first_start == True:
+        db.drop_all()
+        db.create_all()
+        first_start = False
     allTodo=Todo.query.all()
     print("allTodo", allTodo)
     return render_template('index.html', allTodo=allTodo)
@@ -69,6 +76,4 @@ def drop_all():
     return "successfully reset table"
 
 if __name__=="__main__":
- app.run(debug=True)
-
-   
+    app.run()
